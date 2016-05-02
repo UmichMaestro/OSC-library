@@ -1,51 +1,27 @@
-Setting Up OSC Pack Library
+Setting Up OSC with VS 
 ----------------------------
 
-1. Download OSCpack library from Github
+1. Download OSC Dependencies from OSC repo on Github
+	This should include the following: 
+		IpEndpointName.cpp
+		IpEndpointName.h
+		MessageMappingOscPacketListner.h
+		NetworkingUtil.cpp
+		NetworkingUtils.h
+		OscException.h
+		OscHostEndianness.h
+		OscOutboundPacketStream.cpp
+		OscOutboundPacketStrem.h
+		OscTypes.cpp
+		OscTypes.h
+		PacketListener.h
+		resource.h
+		stdafx.h
+		TimerListener.h
+		UdpSocket.cpp
+		UdpSocket.h
 
-2. Open Visual Studio and in the Solution Explorer select the BodyBasics-D2D, or whereever we name the main CPP file. 
-	Open Properties --> You can do this by clicking on the wrench shortcut, hitting Alt-Enter, or going to Project > Properties
- 
-3. Go to Configuration Properties > VC++ Directories
-	Under Include Directories, you should include the location of each of the OSCpack folders
-	i.e. Filepath\oscpack_1_1_0\tests ; oscpack_1_1_0\osc ; oscpack_1_1_0 ip ; etc. 
+2. In VS, right click the project name and go to Add > Existing File. Include all of the above. 
 
-4. Download the OSClib project & solution from Github. Complete step 3 with the OSClib project file. 
-
-5. Go back to the main project/CPP file (BodyBasics-D2D) and go to File > Add > Existing Project
-	We're going to add in the OSClib static library that we just built. VS references the project
-	If done successfully, you should see it in your solution explorer sidebar
-	If you get a lot of errors or can't include the project, refer to step 9 onward. 
-
-6. Under Properties > Common Properties > References you should now add the OSClib project as a reference
-	Just hit Add New Reference... and follow those steps.
-
-7. Go to Properties > Configuration Properties > Linker > Input
-	You should have all of the following libraries included. I can't remember which ones are automatically included/inherited, so just double check this liss
-		kinect20.lib
-		kernel32.lib
-		user32.lib
-		gdi32.lib
-		winspool.lib
-		comdlg32.lib
-		advapi32.lib
-		shell32.lib
-		ole32.lib
-		oleaut32.lib
-		uuid.lib
-		odbc32.lib
-		odbccp32.lib
-		winmm.lib
-
-8. Run the program. 
-----------------------------------------------------------------------------
-
-9. If the OSClib project solution doesn't work, do the following:
-
-10. Under Properties > Configuration Properties > Librarian > Additional Dependencies it should say ws2_32.lib. If it doesn't, include it now. 
-
-11. Build the solution. There might be warnings, but there shouldn't be any errors and it should build successfully. We can deal with the warnings later. 
-
-12. Go back to step 5. 
-
-I may have forgotten a detail or two, so just let me know if the above doesn't work.
+3. Go to Project Properties > Input > Linker > Additional Dependencies. Add winmm.lib and ws2_32.lib.
+	This should get rid of any linker errors you have. 
